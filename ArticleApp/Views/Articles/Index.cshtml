@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<ArticleApp.Models.Article>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Articles";
 }
+<a asp-action="Index" asp-route-orderBy="views">Order by Views</a> |
+<a asp-action="Index" asp-route-orderBy="date">Order by Date</a>
 
-<h1>Index</h1>
+<h1>Articles</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -19,19 +18,10 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PublishedOn)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ArticleTagsAsString)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Views)
             </th>
             <th></th>
         </tr>
@@ -43,27 +33,13 @@
                 @Html.DisplayFor(modelItem => item.Author)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
+               <a asp-action="Details" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem => item.Title)</a> 
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PublishedOn)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ArticleTagsAsString)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Views)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  articleapp:
+    image: articleapp:v3
+    build:
+      context: ./ArticleApp
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+      - "8081:443"
+    environment:
+      - ConnectionStrings__DefaultConnection=server=mysql;port=3306;database=articleapp;user=root;password=root
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=articleapp
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

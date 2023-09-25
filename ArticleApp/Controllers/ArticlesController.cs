@@ -20,11 +20,27 @@ namespace ArticleApp.Controllers
         }
 
         // GET: Articles
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string orderBy = "views")
         {
-              return _context.Articles != null ? 
-                          View(await _context.Articles.ToListAsync()) :
-                          Problem("Entity set 'AppDbContext.Articles'  is null.");
+            if (_context.Articles != null) {
+                Problem("Entity set 'AppDbContext.Articles'  is null.");
+            }
+
+            IQueryable<Article> query = _context.Articles!;
+
+            if (orderBy == "views")
+            {
+                query = query.OrderByDescending(a => a.Views);
+            }
+            else if (orderBy == "date")
+            {
+                query = query.OrderByDescending(a => a.PublishedOn);
+            }
+
+            ViewBag.OrderBy = orderBy;
+            var articles = await query.ToListAsync();
+
+            return View(articles);
         }
 
         // GET: Articles/Details/5
@@ -42,6 +58,10 @@ namespace ArticleApp.Controllers
                 return NotFound();
             }
 
+            article.Views++;
+            _context.Update(article);
+            await _context.SaveChangesAsync();
+
             return View(article);
         }
 
@@ -56,10 +76,11 @@ namespace ArticleApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Author,Title,Content,PublishedOn,ArticleTagsAsString,Category,Views")] Article article)
+        public async Task<IActionResult> Create([Bind("Id,Author,Title,Content,ArticleTagsAsString,Category")] Article article)
         {
             if (ModelState.IsValid)
             {
+                article.PublishedOn = DateTime.Now;
                 _context.Add(article);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -18,12 +18,6 @@ namespace ArticleApp.Controllers
             return View();
         }
 
-        public IActionResult TriggerError()
-        {
-            throw new Exception("This is a test exception!");
-        }
-
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
