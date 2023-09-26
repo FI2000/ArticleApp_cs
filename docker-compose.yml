@@ -2,7 +2,7 @@ version: '3'
 
 services:
   articleapp:
-    image: articleapp:v3
+    image: myarticleapp:v4
     build:
       context: ./ArticleApp
       dockerfile: Dockerfile

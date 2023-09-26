@@ -1,4 +1,6 @@
 ArticleApp/wwwroot/
 ArticleApp/bin/
 ArticleApp/obj/
+ArticleAppUnitTests/bin/
+ArticleAppUnitTests/obj/
 ArticleApp/.vs/

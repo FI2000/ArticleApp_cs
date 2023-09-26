@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ArticleApp.Data;
 using ArticleApp.Models;
+using System.Diagnostics;
 
 namespace ArticleApp.Controllers
 {
@@ -51,8 +52,7 @@ namespace ArticleApp.Controllers
                 return NotFound();
             }
 
-            var article = await _context.Articles
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var article = await _context.Articles.FirstOrDefaultAsync(m => m.Id == id);
             if (article == null)
             {
                 return NotFound();

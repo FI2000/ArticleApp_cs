@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArticleApp", "ArticleApp.csproj", "{F4A53408-2044-4DEE-8226-F2457DBB0F54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArticleApp", "ArticleApp.csproj", "{F4A53408-2044-4DEE-8226-F2457DBB0F54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArticleAppTests", "..\ArticleAppUnitTests\ArticleAppTests.csproj", "{BA128701-CFD5-4422-963C-DF51CCB488AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F4A53408-2044-4DEE-8226-F2457DBB0F54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4A53408-2044-4DEE-8226-F2457DBB0F54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4A53408-2044-4DEE-8226-F2457DBB0F54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA128701-CFD5-4422-963C-DF51CCB488AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA128701-CFD5-4422-963C-DF51CCB488AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA128701-CFD5-4422-963C-DF51CCB488AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA128701-CFD5-4422-963C-DF51CCB488AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
