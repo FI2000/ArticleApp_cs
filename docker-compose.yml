@@ -2,7 +2,7 @@ version: '3'
 
 services:
   articleapp:
-    image: myarticleapp:v4
+    image: myarticleapp:v5
     build:
       context: ./ArticleApp
       dockerfile: Dockerfile
@@ -13,6 +13,8 @@ services:
       - ConnectionStrings__DefaultConnection=server=mysql;port=3306;database=articleapp;user=root;password=root
     depends_on:
       - mysql
+    volumes:
+      - logs_data:/app/logs
 
   mysql:
     image: mysql:latest
@@ -26,3 +28,4 @@ services:
 
 volumes:
   mysql_data:
+  logs_data:
