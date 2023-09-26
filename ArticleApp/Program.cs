@@ -1,6 +1,6 @@
 using ArticleApp.Data;
 using Microsoft.EntityFrameworkCore;
-
+using ArticleApp.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +9,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(builder
     .Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 34)))
     .LogTo(Console.WriteLine, LogLevel.Information));
+
+builder.Services.AddSingleton<ILogger>(provider => new FileLogger($"logs/{DateTime.UtcNow:yyyyMMdd_HHmmss}.txt"));
 
 var app = builder.Build();
 
