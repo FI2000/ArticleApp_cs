@@ -29,7 +29,7 @@ jobs:
       run: dotnet restore ArticleAppUnitTests/ArticleAppTests.csproj  # Replace with your test project file name
 
     - name: Run Unit Tests
-      run: dotnet test --filter Category=Unit
+      run: dotnet test ArticleAppUnitTests/ArticleAppTests.csproj --filter Category=Unit
 
     - name: Run Integration Tests
-      run: dotnet test --filter Category=Integration
+      run: dotnet test ArticleAppUnitTests/ArticleAppTests.csproj --filter Category=Integration
