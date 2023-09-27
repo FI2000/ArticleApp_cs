@@ -64,6 +64,7 @@ namespace ArticleAppUnitTests
         }
 
         [Fact]
+        [Trait("Category", "Unit")]
         public async Task Index_ReturnArticlesView_CorrectCount()
         {
             // Act
@@ -77,6 +78,7 @@ namespace ArticleAppUnitTests
         }
 
         [Fact]
+        [Trait("Category", "Unit")]
         public async Task Index_SortsByDate_WhenOrderByIsDate()
         {
             // Act
@@ -90,6 +92,7 @@ namespace ArticleAppUnitTests
         }
 
         [Fact]
+        [Trait("Category", "Unit")]
         public async Task Index_DefaultsToSortingByViews_WhenOrderByIsNotProvided()
         {
             // Act
@@ -104,6 +107,7 @@ namespace ArticleAppUnitTests
         }
 
         [Fact]
+        [Trait("Category", "Unit")]
         public async Task Details_ReturnArticleView_CorrectArticle()
         {
             // Arrange
@@ -125,6 +129,7 @@ namespace ArticleAppUnitTests
         }
 
         [Fact]
+        [Trait("Category", "Unit")]
         public async Task Create_WithValidModel_AddsArticleAndRedirects()
         {
             // Arrange
@@ -156,6 +161,7 @@ namespace ArticleAppUnitTests
         }
 
         [Fact]
+        [Trait("Category", "Unit")]
         public async Task Create_WithInvalidModel_ReturnsViewWithSameArticle()
         {
             // Arrange

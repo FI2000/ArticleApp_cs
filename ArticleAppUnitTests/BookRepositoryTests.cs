@@ -85,9 +85,12 @@ namespace ArticleAppTests
         }
 
         [Fact]
+        [Trait("Category", "Integration")]
         public async Task Create_Book()
         {
-            // Arrange
+            // Arrange e
+            Console.WriteLine("Try to see me during CICD");
+            Debug.WriteLine("Try to see me during CICD - Debug");
             Book book = _fixture.Create<Book>();
 
             // Act
