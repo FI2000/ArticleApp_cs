@@ -14,15 +14,17 @@ namespace ArticleApp.Controllers
     public class ArticlesController : Controller
     {
         private readonly AppDbContext _context;
-
-        public ArticlesController(AppDbContext context)
+        private readonly ILogger _logger;
+        public ArticlesController(AppDbContext context, ILogger logger)
         {
+            _logger = logger;
             _context = context;
         }
 
         // GET: Articles
         public async Task<IActionResult> Index(string orderBy = "views")
         {
+            _logger.LogInformation("ArticleController: /GET Index Called");
             if (_context.Articles != null) {
                 Problem("Entity set 'AppDbContext.Articles'  is null.");
             }
@@ -68,6 +70,7 @@ namespace ArticleApp.Controllers
         // GET: Articles/Create
         public IActionResult Create()
         {
+            _logger.LogInformation("/GET Create Articles");
             return View();
         }
 
@@ -75,9 +78,18 @@ namespace ArticleApp.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Author,Title,Content,ArticleTagsAsString,Category")] Article article)
         {
+
+            string requestToken = HttpContext.Request.Headers["RequestVerificationToken"];
+            string formToken = HttpContext.Request.Form["__RequestVerificationToken"];
+
+            Debug.WriteLine($"Request Token: {requestToken}");
+            Debug.WriteLine($"Form Token: {formToken}");
+
+            Debug.WriteLine($"{article.Title} - {article.Author} - {article.ArticleTagsAsString} - {article.Content} - {article.Category} ");
+            _logger.LogInformation("/POST Create Articles");
+            _logger.LogInformation($"Received : {article}");
             if (ModelState.IsValid)
             {
                 article.PublishedOn = DateTime.Now;
@@ -85,7 +97,20 @@ namespace ArticleApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(article);
+
+            Debug.WriteLine("Failed");
+
+            _logger.LogInformation("Model State is Invalid. -info");
+            _logger.LogWarning("Model State is Invalid.");
+            foreach (var modelState in ModelState.Values)
+            {
+                foreach (var error in modelState.Errors)
+                {
+                    _logger.LogWarning($"Error: {error.ErrorMessage}");
+                }
+             }
+             return View(article);
+
         }
 
         // GET: Articles/Edit/5
