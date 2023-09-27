@@ -5,3 +5,5 @@ ArticleApp/logs/
 ArticleAppUnitTests/bin/
 ArticleAppUnitTests/obj/
 ArticleApp/.vs/
+
+generator/.idea/

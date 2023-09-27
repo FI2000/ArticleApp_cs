@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq.EntityFrameworkCore;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Logging;
 
 namespace ArticleAppUnitTests
 {
@@ -57,10 +58,10 @@ namespace ArticleAppUnitTests
 
             // Setup mock for SaveChangesAsync
             _mockDbContext.Setup(db => db.SaveChangesAsync(default(CancellationToken))).ReturnsAsync(1);
-
+            var mockLogger = new Mock<ILogger<ArticlesController>>();
 
             // Initialize the controller (SUT)
-            _controller = new ArticlesController(_mockDbContext.Object);
+            _controller = new ArticlesController(_mockDbContext.Object, mockLogger.Object);
         }
 
         [Fact]

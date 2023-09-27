@@ -2,7 +2,7 @@ version: '3'
 
 services:
   articleapp:
-    image: myarticleapp:v5
+    image: myarticleapp:latest
     build:
       context: ./ArticleApp
       dockerfile: Dockerfile
@@ -25,6 +25,13 @@ services:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+
+  my-python-app:
+    build:
+      context: ./generator
+      dockerfile: Dockerfile
+    depends_on:
+      - articleapp
 
 volumes:
   mysql_data:
