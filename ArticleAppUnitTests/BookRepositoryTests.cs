@@ -89,6 +89,8 @@ namespace ArticleAppTests
         public async Task Create_Book()
         {
             // Arrange e
+            Console.WriteLine("Try to see me during CICD");
+            Debug.WriteLine("Try to see me during CICD - Debug");
             Book book = _fixture.Create<Book>();
 
             // Act

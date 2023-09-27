@@ -32,4 +32,4 @@ jobs:
       run: dotnet test ArticleAppUnitTests/ArticleAppTests.csproj --filter Category=Unit
 
     - name: Run Integration Tests
-      run: dotnet test ArticleAppUnitTests/ArticleAppTests.csproj --filter Category=Integration
+      run: dotnet test ArticleAppUnitTests/ArticleAppTests.csproj --filter Category=Integration --logger:"console;verbosity=detailed"
