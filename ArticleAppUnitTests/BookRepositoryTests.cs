@@ -85,9 +85,10 @@ namespace ArticleAppTests
         }
 
         [Fact]
+        [Trait("Category", "Integration")]
         public async Task Create_Book()
         {
-            // Arrange
+            // Arrange e
             Book book = _fixture.Create<Book>();
 
             // Act
