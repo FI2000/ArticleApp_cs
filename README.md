@@ -8,3 +8,5 @@ Technologies used:
  - Visual Studio
  - Python to generate articles through API requests
  - Dockerfile + Dockercompose
+ - Integration test using Docker to create container and communicate with it, Unit tests with Moq
+ - MySQL for the database
